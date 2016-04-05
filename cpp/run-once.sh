@@ -1,4 +1,3 @@
-rm GildedRose
-rm GildedRose.o
 make
-./GildedRose
+./build/GildedRose
+./build/GildedRoseTextTests | diff ../texttests/ThirtyDays/stdout.gr -

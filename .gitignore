@@ -1,4 +1,10 @@
 #
+# IntelliJ/Clion
+#
+
+.idea/
+
+#
 # Visual Studio Code
 #
 
