@@ -1,0 +1,12 @@
+#
+# Visual Studio Code
+#
+
+.vscode/
+browse.VC.db
+
+#
+# misc
+#
+
+build/
