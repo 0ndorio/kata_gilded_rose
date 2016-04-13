@@ -5,6 +5,9 @@ project(cpp)
 #find_package(Threads REQUIRED)
 set(CMAKE_THREAD_LIBS_INIT pthread)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
