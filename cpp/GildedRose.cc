@@ -1,7 +1,11 @@
 #include "GildedRose.h"
 
 GildedRose::GildedRose(std::vector<Item> & items) : items(items)
-{}
+{
+  for (auto& item : items) {
+    if (item.quality < 0) { item.quality = 0; }
+  }
+}
     
 void GildedRose::updateQuality() 
 {
