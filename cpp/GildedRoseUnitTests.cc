@@ -40,9 +40,22 @@ TEST(GildedRoseUnitTest, AgedBrieGetsBetterWithAge)
 {
   int quality = 0;
 
-  std::vector<Item> items{{"Aged Brie", 0, quality}};
+  std::vector<Item> items{{"Aged Brie", 1, quality}, {"Aged Brie", 0, quality}};
   GildedRose app{items};
 
   app.updateQuality();
   EXPECT_LT(quality, items[0].quality);
+  EXPECT_LT(quality, items[1].quality);
+}
+
+TEST(GildedRoseUnitTest, QualityNeverAbove50)
+{
+  int quality = 50;
+
+  std::vector<Item> items{{"General Item", 0, 100}, {"Aged Brie", 0, quality}};
+  GildedRose app{items};
+  EXPECT_EQ(quality, items[0].quality);
+
+  app.updateQuality();
+  EXPECT_EQ(quality, items[1].quality);
 }

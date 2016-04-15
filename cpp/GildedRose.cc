@@ -4,6 +4,13 @@ GildedRose::GildedRose(std::vector<Item> & items) : items(items)
 {
   for (auto& item : items) {
     if (item.quality < 0) { item.quality = 0; }
+    else if (item.quality > 50) {
+      if (item.name.find("Sulfuras") == -1) {
+        item.quality = 50;
+      } else {
+        item.quality = 80;
+      }
+    }
   }
 }
     
