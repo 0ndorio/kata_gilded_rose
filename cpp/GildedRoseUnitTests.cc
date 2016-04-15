@@ -1,6 +1,23 @@
 #include <gtest/gtest.h>
 #include "GildedRose.h"
 
+//
+// General Gilded Rose Tests
+//
+
+TEST(GildedRoseUnitTest, QualityAndSellInReducedBy1PerDay)
+{
+  int quality = 10;
+  int sell_in = 10;
+
+  std::vector<Item> items{{"Generic Item", sell_in, quality}};
+  GildedRose app{items};
+
+  app.updateQuality();
+  EXPECT_EQ(sell_in - 1, items[0].quality);
+  EXPECT_EQ(quality - 1, items[0].quality);
+}
+
 TEST(GildedRoseUnitTest, QualityDecreasesTwiceAsFastAfterSellDatePassed)
 {
   int quality = 10;
