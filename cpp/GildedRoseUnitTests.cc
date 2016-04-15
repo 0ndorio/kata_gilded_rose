@@ -35,3 +35,14 @@ TEST(GildedRoseUnitTest, NeverNegativQuality)
   EXPECT_EQ(sell_in - 2, items[0].sellIn);
   EXPECT_EQ(quality, items[0].quality);
 }
+
+TEST(GildedRoseUnitTest, AgedBrieGetsBetterWithAge)
+{
+  int quality = 0;
+
+  std::vector<Item> items{{"Aged Brie", 0, quality}};
+  GildedRose app{items};
+
+  app.updateQuality();
+  EXPECT_LT(quality, items[0].quality);
+}
