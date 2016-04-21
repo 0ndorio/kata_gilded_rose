@@ -76,3 +76,22 @@ TEST(GildedRoseUnitTest, QualityNeverAbove50)
   app.updateQuality();
   EXPECT_EQ(quality, items[1].quality);
 }
+
+//
+// Special Item Tests
+//
+
+TEST(SulfurasTest, QualityAndSellInNeverAlters)
+{
+  auto quality = 80;
+  auto sell_in = 1;
+
+  std::vector<Item> items{{"Sulfuras, Hand of Ragnaros", sell_in, quality}};
+  GildedRose app{items};
+  EXPECT_EQ(sell_in, items[0].sellIn);
+  EXPECT_EQ(quality, items[0].quality);
+
+  app.updateQuality();
+  EXPECT_EQ(sell_in, items[0].sellIn);
+  EXPECT_EQ(quality, items[0].quality);
+}
