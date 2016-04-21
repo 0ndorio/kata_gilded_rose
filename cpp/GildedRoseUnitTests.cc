@@ -7,8 +7,8 @@
 
 TEST(GildedRoseUnitTest, QualityAndSellInReducedBy1PerDay)
 {
-  int quality = 10;
-  int sell_in = 10;
+  auto quality = 10;
+  auto sell_in = 10;
 
   std::vector<Item> items{{"Generic Item", sell_in, quality}};
   GildedRose app{items};
@@ -20,8 +20,8 @@ TEST(GildedRoseUnitTest, QualityAndSellInReducedBy1PerDay)
 
 TEST(GildedRoseUnitTest, QualityDecreasesTwiceAsFastAfterSellDatePassed)
 {
-  int quality = 10;
-  int sell_in = 1;
+  auto quality = 10;
+  auto sell_in = 1;
 
   std::vector<Item> items{{"Generic Item", sell_in, quality}};
   GildedRose app{items};
@@ -37,8 +37,8 @@ TEST(GildedRoseUnitTest, QualityDecreasesTwiceAsFastAfterSellDatePassed)
 
 TEST(GildedRoseUnitTest, NeverNegativQuality)
 {
-  int quality = 0;
-  int sell_in = 1;
+  auto quality = 0;
+  auto sell_in = 1;
 
   std::vector<Item> items{{"Generic Item", sell_in, quality}, {"Useless Item", 0, -10}};
   GildedRose app{items};
@@ -55,7 +55,7 @@ TEST(GildedRoseUnitTest, NeverNegativQuality)
 
 TEST(GildedRoseUnitTest, AgedBrieGetsBetterWithAge)
 {
-  int quality = 0;
+  auto quality = 0;
 
   std::vector<Item> items{{"Aged Brie", 1, quality}, {"Aged Brie", 0, quality}};
   GildedRose app{items};
@@ -67,7 +67,7 @@ TEST(GildedRoseUnitTest, AgedBrieGetsBetterWithAge)
 
 TEST(GildedRoseUnitTest, QualityNeverAbove50)
 {
-  int quality = 50;
+  auto quality = 50;
 
   std::vector<Item> items{{"General Item", 0, 100}, {"Aged Brie", 0, quality}};
   GildedRose app{items};
