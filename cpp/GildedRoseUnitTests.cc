@@ -96,6 +96,13 @@ TEST(SulfurasTest, QualityAndSellInNeverAlters)
   EXPECT_EQ(quality, items[0].quality);
 }
 
+TEST(SulfurasTest, QualityIsAlways80)
+{
+  std::vector<Item> items{{"Sulfuras, Hand of Ragnaros", 0, 0}};
+  GildedRose app{items};
+  EXPECT_EQ(80, items[0].quality);
+}
+
 //
 // Backstage Pass Tests
 //
