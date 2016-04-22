@@ -14,10 +14,11 @@ public:
 class GildedRose
 {
 public:
-    std::vector<Item> & items;
-    GildedRose(std::vector<Item> & items);
+  std::vector<Item> & items;
+  GildedRose(std::vector<Item> & items);
     
-    void updateQuality();
-  void updateSellIn(Item &i) const;
+  void updateInventory();
+  void updateItemSellIn(Item &item);
+  void updateItemQuality(Item &item);
 };
 

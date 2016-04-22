@@ -30,7 +30,7 @@ class GildedRoseTextOutputTest : public ::testing::TestWithParam<GildedRoseTextO
   void run(int number_of_days)
   {
       for (int day = 0; day < number_of_days; ++day) {
-          app.updateQuality();
+        app.updateInventory();
       }
   }
 
