@@ -59,10 +59,7 @@ void GildedRose::updateQuality()
             }
         }
 
-        if (items[i].name != "Sulfuras, Hand of Ragnaros")
-        {
-            items[i].sellIn = items[i].sellIn - 1;
-        }
+        updateSellIn(items[i]);
 
         if (items[i].sellIn < 0)
         {
@@ -92,4 +89,12 @@ void GildedRose::updateQuality()
             }
         }
     }
+}
+void GildedRose::updateSellIn(Item &item) const
+{
+  if (item.name == "Sulfuras, Hand of Ragnaros") {
+    return;
+  }
+
+  item.sellIn = item.sellIn - 1;
 }
