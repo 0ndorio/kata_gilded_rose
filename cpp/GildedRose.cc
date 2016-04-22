@@ -17,49 +17,50 @@ GildedRose::GildedRose(std::vector<Item> & items) : items(items)
     }
   }
 }
-    
+
 void GildedRose::updateQuality() 
 {
     for (int i = 0; i < items.size(); i++)
     {
-        if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert")
+      updateSellIn(items[i]);
+
+      if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert")
+      {
+        if (items[i].quality > 0)
         {
-            if (items[i].quality > 0)
-            {
-                if (items[i].name != "Sulfuras, Hand of Ragnaros")
-                {
-                    items[i].quality = items[i].quality - 1;
-                }
-            }
+          if (items[i].name != "Sulfuras, Hand of Ragnaros")
+          {
+            items[i].quality = items[i].quality - 1;
+          }
         }
-        else
+      }
+      else
+      {
+        if (items[i].quality < 50)
         {
-            if (items[i].quality < 50)
+          items[i].quality = items[i].quality + 1;
+
+          if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
+          {
+            if (items[i].sellIn < 10)
             {
+              if (items[i].quality < 50)
+              {
                 items[i].quality = items[i].quality + 1;
-
-                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    if (items[i].sellIn < 11)
-                    {
-                        if (items[i].quality < 50)
-                        {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
-
-                    if (items[i].sellIn < 6)
-                    {
-                        if (items[i].quality < 50)
-                        {
-                            items[i].quality = items[i].quality + 1;
-                        }
-                    }
-                }
+              }
             }
-        }
 
-        updateSellIn(items[i]);
+            if (items[i].sellIn < 5)
+            {
+              if (items[i].quality < 50)
+              {
+                items[i].quality = items[i].quality + 1;
+              }
+            }
+          }
+        }
+      }
+
 
         if (items[i].sellIn < 0)
         {
