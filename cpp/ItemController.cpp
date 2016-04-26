@@ -45,60 +45,45 @@ ItemController::ItemController(std::vector<Item> &items)
 
 void ItemController::updateSellIn(Item &item)
 {
-  if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
-    return;
-  }
+  auto type = specialItemType(item);
 
-  item.sellIn = item.sellIn - 1;
+  switch(type) {
+    default: {
+      item.sellIn = item.sellIn - 1;
+      break;
+    }
+    case SpecialItem::SULFURAS: {
+      break;
+    }
+  }
 }
 
 void ItemController::updateQuality(Item &item)
 {
-  if (item.name != ItemController::names.at(SpecialItem::AGED_BRIE)
-      && item.name != ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
+  auto type = specialItemType(item);
+  if (type == SpecialItem::SULFURAS) { return; }
 
-    if (item.quality > 0) {
-      if (item.name != ItemController::names.at(SpecialItem::SULFURAS)) {
-        item.quality = item.quality - 1;
-      }
+  switch(type) {
+    default: {
+      item.quality = item.sellIn < 0 ? item.quality - 2 : item.quality - 1;
+      break;
     }
-  } else {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1;
-
-      if (item.name == ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
-        if (item.sellIn < 10) {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-
-        if (item.sellIn < 5) {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-        }
-      }
+    case SpecialItem::AGED_BRIE: {
+      item.quality = item.sellIn < 0 ? item.quality + 2 : item.quality + 1;
+      break;
+    }
+    case SpecialItem::BACKSTAGE_PASS: {
+      item.quality = item.sellIn < 0 ? 0
+                       : item.sellIn < 5 ? item.quality + 3
+                       : item.sellIn < 10 ? item.quality + 2
+                       : item.quality + 1;
+      break;
     }
   }
 
-  if (item.sellIn < 0) {
-    if (item.name != ItemController::names.at(SpecialItem::AGED_BRIE)) {
-      if (item.name != ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
-        if (item.quality > 0) {
-          if (item.name != ItemController::names.at(SpecialItem::SULFURAS)) {
-            item.quality = item.quality - 1;
-          }
-        }
-      } else {
-        item.quality = item.quality - item.quality;
-      }
-    } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
-  }
+  item.quality = item.quality < 0 ? 0
+                   : item.quality > 50 ? 50
+                   : item.quality;
 }
 
 
