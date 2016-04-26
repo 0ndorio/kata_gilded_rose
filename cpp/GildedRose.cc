@@ -23,18 +23,9 @@ GildedRose::GildedRose(std::vector<Item> & items)
 void GildedRose::updateInventory()
 {
   for (auto &item : mItemController.items) {
-    updateItemSellIn(item);
+    mItemController.updateSellIn(item);
     updateItemQuality(item);
   }
-}
-
-void GildedRose::updateItemSellIn(Item &item)
-{
-  if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
-    return;
-  }
-
-  item.sellIn = item.sellIn - 1;
 }
 
 void GildedRose::updateItemQuality(Item &item)

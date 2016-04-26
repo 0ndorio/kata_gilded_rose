@@ -9,3 +9,12 @@ const std::map<ItemController::SpecialItem, std::string> ItemController::names {
 ItemController::ItemController(std::vector<Item> &items)
   : items(items)
 {}
+
+void ItemController::updateSellIn(Item &item)
+{
+  if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
+    return;
+  }
+
+  item.sellIn = item.sellIn - 1;
+}

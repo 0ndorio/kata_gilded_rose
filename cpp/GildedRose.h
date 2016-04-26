@@ -14,7 +14,6 @@ public:
   GildedRose(std::vector<Item> & items);
     
   void updateInventory();
-  void updateItemSellIn(Item &item);
   void updateItemQuality(Item &item);
 
  private:

@@ -19,6 +19,8 @@ class ItemController
   std::vector<Item> &items;
 
   ItemController(std::vector<Item> &items);
+
+  void updateSellIn(Item &item);
 };
 
 #endif //ITEM_CONTROLLER_H
