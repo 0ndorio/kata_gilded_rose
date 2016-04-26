@@ -3,7 +3,8 @@
 
 using SpecialItem = ItemController::SpecialItem;
 
-GildedRose::GildedRose(std::vector<Item> & items) : items(items)
+GildedRose::GildedRose(std::vector<Item> & items)
+    : mItemController(items)
 {
   for (auto& item : items) {
     if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
@@ -21,7 +22,7 @@ GildedRose::GildedRose(std::vector<Item> & items) : items(items)
 
 void GildedRose::updateInventory()
 {
-  for (auto &item : items) {
+  for (auto &item : mItemController.items) {
     updateItemSellIn(item);
     updateItemQuality(item);
   }

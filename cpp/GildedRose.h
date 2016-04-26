@@ -5,17 +5,21 @@
 #include <vector>
 
 #include "Item.h"
+#include "ItemController.h"
 
 class GildedRose
 {
 public:
 
-  std::vector<Item> & items;
   GildedRose(std::vector<Item> & items);
     
   void updateInventory();
   void updateItemSellIn(Item &item);
   void updateItemQuality(Item &item);
+
+ private:
+
+  ItemController mItemController;
 };
 
 #endif /* GILDED_ROSE_H */

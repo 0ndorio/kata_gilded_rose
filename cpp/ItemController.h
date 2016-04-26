@@ -3,6 +3,9 @@
 
 #include <map>
 #include <string>
+#include <vector>
+
+#include "Item.h"
 
 class ItemController
 {
@@ -13,6 +16,9 @@ class ItemController
   };
 
   static const std::map<SpecialItem, std::string> names;
+  std::vector<Item> &items;
+
+  ItemController(std::vector<Item> &items);
 };
 
 #endif //ITEM_CONTROLLER_H
