@@ -1,15 +1,12 @@
 #include "GildedRose.h"
+#include "ItemController.h"
 
-const std::map<SpecialItem::Type, std::string> SpecialItem::names {
-    {SpecialItem::Type::AGED_BRIE, "Aged Brie"},
-    {SpecialItem::Type::BACKSTAGE_PASS, "Backstage passes to a TAFKAL80ETC concert"},
-    {SpecialItem::Type::SULFURAS, "Sulfuras, Hand of Ragnaros"}
-};
+using SpecialItem = ItemController::SpecialItem;
 
 GildedRose::GildedRose(std::vector<Item> & items) : items(items)
 {
   for (auto& item : items) {
-    if (item.name == SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
+    if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
       item.quality = 80;
       continue;
     }
@@ -32,7 +29,7 @@ void GildedRose::updateInventory()
 
 void GildedRose::updateItemSellIn(Item &item)
 {
-  if (item.name == SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
+  if (item.name == ItemController::names.at(SpecialItem::SULFURAS)) {
     return;
   }
 
@@ -41,11 +38,11 @@ void GildedRose::updateItemSellIn(Item &item)
 
 void GildedRose::updateItemQuality(Item &item)
 {
-  if (item.name != SpecialItem::names.at(SpecialItem::Type::AGED_BRIE)
-      && item.name != SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
+  if (item.name != ItemController::names.at(SpecialItem::AGED_BRIE)
+      && item.name != ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
 
     if (item.quality > 0) {
-      if (item.name != SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
+      if (item.name != ItemController::names.at(SpecialItem::SULFURAS)) {
         item.quality = item.quality - 1;
       }
     }
@@ -53,7 +50,7 @@ void GildedRose::updateItemQuality(Item &item)
     if (item.quality < 50) {
       item.quality = item.quality + 1;
 
-      if (item.name == SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
+      if (item.name == ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
         if (item.sellIn < 10) {
           if (item.quality < 50) {
             item.quality = item.quality + 1;
@@ -70,10 +67,10 @@ void GildedRose::updateItemQuality(Item &item)
   }
 
   if (item.sellIn < 0) {
-    if (item.name != SpecialItem::names.at(SpecialItem::Type::AGED_BRIE)) {
-      if (item.name != SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
+    if (item.name != ItemController::names.at(SpecialItem::AGED_BRIE)) {
+      if (item.name != ItemController::names.at(SpecialItem::BACKSTAGE_PASS)) {
         if (item.quality > 0) {
-          if (item.name != SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
+          if (item.name != ItemController::names.at(SpecialItem::SULFURAS)) {
             item.quality = item.quality - 1;
           }
         }
