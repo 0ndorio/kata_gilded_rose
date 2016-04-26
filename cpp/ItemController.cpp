@@ -1,10 +1,30 @@
+#include <algorithm>
+
 #include "ItemController.h"
 
-const std::map<ItemController::SpecialItem, std::string> ItemController::names {
+//
+// Static
+//
+
+const std::map<const ItemController::SpecialItem,const std::string> ItemController::names {
     {SpecialItem::AGED_BRIE, "Aged Brie"},
     {SpecialItem::BACKSTAGE_PASS, "Backstage passes to a TAFKAL80ETC concert"},
     {SpecialItem::SULFURAS, "Sulfuras, Hand of Ragnaros"}
 };
+
+const ItemController::SpecialItem ItemController::specialItemType(const Item &item)
+{
+  auto isKnownSpecialItemType =  [item](const auto &entry) -> bool {
+    return entry.second == item.name;
+  };
+
+  auto iterator = std::find_if(names.begin(), names.end(), isKnownSpecialItemType);
+  return names.end() == iterator ? SpecialItem::NONE : (*iterator).first;
+}
+
+//
+// Instance
+//
 
 ItemController::ItemController(std::vector<Item> &items)
   : items(items)

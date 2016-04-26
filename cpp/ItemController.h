@@ -12,10 +12,12 @@ class ItemController
  public:
 
   enum class SpecialItem {
-    AGED_BRIE, BACKSTAGE_PASS, SULFURAS
+    NONE, AGED_BRIE, BACKSTAGE_PASS, SULFURAS
   };
 
-  static const std::map<SpecialItem, std::string> names;
+  static const std::map<const SpecialItem, const std::string> names;
+  static const SpecialItem specialItemType(const Item &item);
+
   std::vector<Item> &items;
 
   ItemController(std::vector<Item> &items);
