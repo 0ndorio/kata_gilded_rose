@@ -21,6 +21,7 @@ class ItemController
   ItemController(std::vector<Item> &items);
 
   void updateSellIn(Item &item);
+  void updateQuality(Item &item);
 };
 
 #endif //ITEM_CONTROLLER_H
