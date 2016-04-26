@@ -43,7 +43,17 @@ ItemController::ItemController(std::vector<Item> &items)
   std::for_each(items.begin(), items.end(), fixInitialQuality);
 }
 
-void ItemController::updateSellIn(Item &item)
+void ItemController::updateItems()
+{
+  auto updateItem = [this](Item &item) -> void {
+    updateSellIn(item);
+    updateQuality(item);
+  };
+
+  std::for_each(items.begin(), items.end(), updateItem);
+}
+
+void ItemController::updateSellIn(Item &item) const
 {
   auto type = specialItemType(item);
 
@@ -58,7 +68,7 @@ void ItemController::updateSellIn(Item &item)
   }
 }
 
-void ItemController::updateQuality(Item &item)
+void ItemController::updateQuality(Item &item) const
 {
   auto type = specialItemType(item);
   if (type == SpecialItem::SULFURAS) { return; }

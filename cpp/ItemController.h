@@ -18,12 +18,15 @@ class ItemController
   static const std::map<const SpecialItem, const std::string> names;
   static const SpecialItem specialItemType(const Item &item);
 
+  ItemController(std::vector<Item> &items);
+  void updateItems();
+
+ private:
+
   std::vector<Item> &items;
 
-  ItemController(std::vector<Item> &items);
-
-  void updateSellIn(Item &item);
-  void updateQuality(Item &item);
+  void updateSellIn(Item &item) const;
+  void updateQuality(Item &item) const;
 };
 
 #endif //ITEM_CONTROLLER_H

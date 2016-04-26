@@ -9,8 +9,5 @@ GildedRose::GildedRose(std::vector<Item> & items)
 
 void GildedRose::updateInventory()
 {
-  for (auto &item : mItemController.items) {
-    mItemController.updateSellIn(item);
-    mItemController.updateQuality(item);
-  }
+  mItemController.updateItems();
 }
