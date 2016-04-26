@@ -1,18 +1,22 @@
 #include "GildedRose.h"
 
+const std::map<SpecialItem::Type, std::string> SpecialItem::names {
+    {SpecialItem::Type::AGED_BRIE, "Aged Brie"},
+    {SpecialItem::Type::BACKSTAGE_PASS, "Backstage passes to a TAFKAL80ETC concert"},
+    {SpecialItem::Type::SULFURAS, "Sulfuras, Hand of Ragnaros"}
+};
+
 GildedRose::GildedRose(std::vector<Item> & items) : items(items)
 {
   for (auto& item : items) {
-
-    if (item.name.find("Sulfuras") != -1) {
+    if (item.name == SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
       item.quality = 80;
       continue;
     }
 
     if (item.quality < 0) {
       item.quality = 0;
-    }
-    else if (item.quality > 50) {
+    } else if (item.quality > 50) {
       item.quality = 50;
     }
   }
@@ -28,7 +32,7 @@ void GildedRose::updateInventory()
 
 void GildedRose::updateItemSellIn(Item &item)
 {
-  if (item.name == "Sulfuras, Hand of Ragnaros") {
+  if (item.name == SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
     return;
   }
 
@@ -37,9 +41,11 @@ void GildedRose::updateItemSellIn(Item &item)
 
 void GildedRose::updateItemQuality(Item &item)
 {
-  if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") {
+  if (item.name != SpecialItem::names.at(SpecialItem::Type::AGED_BRIE)
+      && item.name != SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
+
     if (item.quality > 0) {
-      if (item.name != "Sulfuras, Hand of Ragnaros") {
+      if (item.name != SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
         item.quality = item.quality - 1;
       }
     }
@@ -47,7 +53,7 @@ void GildedRose::updateItemQuality(Item &item)
     if (item.quality < 50) {
       item.quality = item.quality + 1;
 
-      if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
+      if (item.name == SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
         if (item.sellIn < 10) {
           if (item.quality < 50) {
             item.quality = item.quality + 1;
@@ -64,10 +70,10 @@ void GildedRose::updateItemQuality(Item &item)
   }
 
   if (item.sellIn < 0) {
-    if (item.name != "Aged Brie") {
-      if (item.name != "Backstage passes to a TAFKAL80ETC concert") {
+    if (item.name != SpecialItem::names.at(SpecialItem::Type::AGED_BRIE)) {
+      if (item.name != SpecialItem::names.at(SpecialItem::Type::BACKSTAGE_PASS)) {
         if (item.quality > 0) {
-          if (item.name != "Sulfuras, Hand of Ragnaros") {
+          if (item.name != SpecialItem::names.at(SpecialItem::Type::SULFURAS)) {
             item.quality = item.quality - 1;
           }
         }

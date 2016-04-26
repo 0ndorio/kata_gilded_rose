@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class Item
 {
@@ -14,9 +15,19 @@ public:
     {}
 };
 
+struct SpecialItem {
+
+  enum class Type {
+    AGED_BRIE, BACKSTAGE_PASS, SULFURAS
+  };
+
+  static const std::map<Type, std::string> names;
+};
+
 class GildedRose
 {
 public:
+
   std::vector<Item> & items;
   GildedRose(std::vector<Item> & items);
     
