@@ -17,7 +17,7 @@ set(GILDED_ROSE_SOURCE_FILES
     GildedRose.h
     GildedRoseUnitTests.cc
     GildedRoseTextTests.cc
-    GildedRoseTests.cc ItemController.cpp ItemController.h)
+    GildedRoseTests.cc ItemController.cpp ItemController.h Item.h)
 
 add_executable(GildedRose ${GILDED_ROSE_SOURCE_FILES})
 target_link_libraries(GildedRose ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})

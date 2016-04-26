@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
+
 #include "GildedRose.h"
+#include "Item.h"
 
 //
 // General Gilded Rose Tests
