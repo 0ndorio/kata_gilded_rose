@@ -1,0 +1,16 @@
+cpp_job:
+    image: gcc:latest
+    only:
+        - cpp
+    before_script:
+        - sh ${CI_PROJECT_DIR}/ci/init_cpp.sh &>/dev/null
+    script:
+        - mkdir ${CI_PROJECT_DIR}/cpp/build/
+        - cd ${CI_PROJECT_DIR}/cpp/build/
+        - ~/cmake/bin/cmake -D CMAKE_BUILD_TYPE=Debug ../
+        - make
+        - ./GildedRose
+    stage: build
+    tags:
+        - linux
+
