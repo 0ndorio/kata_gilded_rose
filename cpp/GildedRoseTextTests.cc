@@ -36,7 +36,7 @@ class GildedRoseTextOutputTest : public ::testing::TestWithParam<GildedRoseTextO
 
   void checkExpectedResult(std::vector<std::pair<int, int>> expected_results)
   {
-      for (int index = 0; index < expected_results.size(); ++index) {
+      for (size_t index = 0; index < expected_results.size(); ++index) {
           const auto result = expected_results[index];
           const auto item = items[index];
 
@@ -74,4 +74,3 @@ INSTANTIATE_TEST_CASE_P(RunMultipleDays, GildedRoseTextOutputTest, ::testing::Va
         {0, 80}, {-1, 80}, {-15, 0},
         {-20, 0}, {-25, 0}, {-27, 0}}}
 ));
-

@@ -12,7 +12,7 @@ const std::map<const ItemController::SpecialItem,const std::string> ItemControll
     {SpecialItem::SULFURAS, "Sulfuras, Hand of Ragnaros"}
 };
 
-const ItemController::SpecialItem ItemController::specialItemType(const Item &item)
+ItemController::SpecialItem ItemController::specialItemType(const Item &item)
 {
   auto isKnownSpecialItemType =  [item](const auto &entry) -> bool {
     return entry.second == item.name;

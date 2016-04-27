@@ -16,7 +16,7 @@ class ItemController
   };
 
   static const std::map<const SpecialItem, const std::string> names;
-  static const SpecialItem specialItemType(const Item &item);
+  static SpecialItem specialItemType(const Item &item);
 
   ItemController(std::vector<Item> &items);
   void updateItems();
