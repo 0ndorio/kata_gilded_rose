@@ -1,0 +1,3 @@
+[![build status](https://gitlab.com/0ndo/kata_gilded_rose/badges/cpp/build.svg)](https://gitlab.com/0ndo/kata_gilded_rose/commits/cpp)
+
+My work on the Gilded Rose refactoring cata ... 
